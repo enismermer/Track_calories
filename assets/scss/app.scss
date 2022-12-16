@@ -1,3 +1,70 @@
+@import 'variables.scss';
+@import 'components/header.scss';
+@import 'components/datauser.scss';
+
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
+
 body {
-    background: blue;
+    background: rgb(203, 202, 202);
+}
+
+.containerApp {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.doughnut {
+    width: 400px;
+    margin: auto;
+    position: relative;
+    .kcal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 1.3rem;
+    }
+
+}
+
+.custom-shape-divider-bottom-1671192619 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1671192619 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 94px;
+}
+
+.custom-shape-divider-bottom-1671192619 .shape-fill {
+    fill: #FFFFFF;
+}
+
+.food {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 5px 4px 8px -1px #000000;
+    margin-bottom: 10px;
+    padding: 2rem;
+    .KgFood {
+        color: grey;
+    }
 }
