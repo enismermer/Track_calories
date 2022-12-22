@@ -63,7 +63,7 @@ include_once('includes/header.php');
             </div>
         </section>
 
-        <section class="date" align="center" style="font-size: 1.5em;">
+        <section class="date" align="center" style="font-size:1.5em; padding:20px;">
             <div><?php
         //date default timezone
        // date_default_timezone_set('Europe/Paris');
@@ -79,27 +79,51 @@ include_once('includes/header.php');
             <div class="container">
                 <div class="row">
                     <div class="food">
-                        <div class="titleFood">Big burger</div>
-                        <div class="calorieFood">504kcal</div>
+                        <div class="titleFood">Big mac</div>
+                        <div class="calorieFood">400kcal</div>
                     </div>
                     <div class="food">
-                        <div class="titleFood">Big burger</div>
-                        <div class="calorieFood">504kcal</div>
+                        <div class="titleFood">Pain au chocolat</div>
+                        <div class="calorieFood">250kcal</div>
                     </div>
                     <div class="food">
-                        <div class="titleFood">Big burger</div>
-                        <div class="calorieFood">504kcal</div>
+                        <div class="titleFood">Pâtes carbonara</div>
+                        <div class="calorieFood">1200kcal</div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="text-center">
-            <button class="btn btn-primary">+</button>
+    <footer style="padding:10px;">
+        
+    <!-- Button trigger modal -->
+    <div class="text-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une calorie</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="food" class="form-label">Plat cuisine</label>
+                        <input type="text" class="form-control" id="food" placeholder="Enter a cooked dish">
+                    </div>
+                    <div class="mb-3">
+                        <label for="calories" class="form-label">Calories (kcal)</label>
+                        <input type="text" class="form-control" id="calories" placeholder="Enter a calorie value">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addData()">Enregistrer</button>
+                </div>
+            </div>
         </div>
+    </div>
     </footer>
-
 </div>
 
 

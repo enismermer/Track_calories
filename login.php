@@ -1,5 +1,26 @@
 <?php
 
+// j'importe ma boite a outils.
+require './utils/connexion.php';
+require_once './utils/fonction.php';
+
+if (isset($_POST['password'])) {
+    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    try {
+        $prepare = $pdo->prepare("SELECT INTO users 
+        (email,password) VALUES (:email, :password)");
+
+        $prepare->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
+        $prepare->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
+        $prepare->execute();
+
+        header('Location:affiche.php');
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+
     $page = [
         "title" => "Track Calorie - Login"
     ];
