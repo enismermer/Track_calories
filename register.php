@@ -10,7 +10,7 @@ error_log("register".print_r($_SESSION, 1));
 
 if (isset($_POST["register"])){
 
-    $prenom = $_POST['prénom'];
+    $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
     $age = $_POST['age'];
     $email = $_POST['email'];
@@ -27,16 +27,15 @@ if (isset($_POST["register"])){
         !empty($sexe) &&
         !empty($taille) &&
         !empty($poids)
-
         ){
         
 
         //$now = date("d/m/Y H:i:s", time());
-        $sql = "INSERT INTO users VALUES (:id, :prénom, :nom, :age, :email, :tel, :sexe, :taille, :poids)";
+        $sql = "INSERT INTO users VALUES (:id, :prenom, :nom, :age, :email, :tel, :sexe, :taille, :poids)";
         
         $sql = $pdo->prepare($sql);
         $sql->bindParam('id', $id, PDO::PARAM_INT);
-        $sql->bindParam('prénom', $prenom, PDO::PARAM_STR);
+        $sql->bindParam('prenom', $prenom, PDO::PARAM_STR);
         $sql->bindParam('nom', $nom, PDO::PARAM_STR);
         $sql->bindParam('age', $age, PDO::PARAM_INT);
         $sql->bindParam('email', $email, PDO::PARAM_STR);
@@ -57,7 +56,7 @@ if (isset($_POST["register"])){
 
 
     $page = [
-        "title" => "Track Calorie - Register"
+        "title" => "Register Page"
     ];
 
     
@@ -73,7 +72,7 @@ if (isset($_POST["register"])){
                 <form method="POST">
                     <div class="mb-3">
                         <label for="prénom" class="form-label">Prénom</label>
-                        <input type="text" class="form-control" id="prénom" name="prénom" aria-describedby="emailHelp" placeholder="Enter firstname" required>
+                        <input type="text" class="form-control" id="prenom" name="prenom" aria-describedby="emailHelp" placeholder="Enter firstname" required>
                     </div>
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>
@@ -95,9 +94,9 @@ if (isset($_POST["register"])){
                     <div class="mb-3">
                         <select class="form-select" id="sexe" name="sexe" aria-label="Floating label select example" required>
                             <option selected>Sexe</option>
-                            <option value="1">Homme</option>
-                            <option value="2">Femme</option>
-                            <option value="3">Non binaire</option>
+                            <option value="homme">Homme</option>
+                            <option value="femme">Femme</option>
+                            <option value="nonbinaire">Non binaire</option>
                         </select>
                     </div>
                     <br>
@@ -112,7 +111,8 @@ if (isset($_POST["register"])){
                         <output id="outputWeight">70</output>
                     </div>
                     <br>
-                        <button type="submit" name="register" class="btn btn-primary">Login</button>
+                        <button type="submit" name="register" class="btn btn-primary">Submit</button>
+                        <a href="login.php" style="text-decoration:none">Login</a>
                 </form>
             </div>
         </div>

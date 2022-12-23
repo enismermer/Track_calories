@@ -4,25 +4,26 @@
 require './utils/connexion.php';
 require_once './utils/fonction.php';
 
-if (isset($_POST['password'])) {
-    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    try {
-        $prepare = $pdo->prepare("SELECT INTO users 
-        (email,password) VALUES (:email, :password)");
-
-        $prepare->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
-        $prepare->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
-        $prepare->execute();
-
-        header('Location:affiche.php');
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+if (isset($_POST['email'])) {
+    //ici je recupère mon mail
+    $email = stripslashes($_REQUEST['email']);
+    //var_dump($email);
+    //ici je fais un select avec ma table users et mon mail
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $select = $pdo->prepare($sql);
+    $select ->execute();
+    //print_r('coucou');
+    $count = $select->rowCount();
+    if ($count === 1) {
+        $_SESSION['email'] = $email;
+        header("Location: index.php");
+    } else {
+        echo "Le nom d'utilisateur ou le mot de passe est incorrect.";
     }
 }
 
     $page = [
-        "title" => "Track Calorie - Login"
+        "title" => "Login"
     ];
 
     
@@ -35,24 +36,19 @@ if (isset($_POST['password'])) {
     <div class="container">
             <div class="row">
                 <div class="col">
-                    <form>
+                    <form action="" method="post" name="login">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="email" class="form-label">Adresse email</label>
+                            <input type="email" name="email" class="form-control" id="email">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                        <button type="submit" id="submit" value="login" class="btn btn-primary">Submit</button>
+                        <a href="register.php" style="text-decoration:none">Register</a>
                     </form>
 
-                    <a href="register.php">Register</a>
                 </div>
             </div>
         </div>
