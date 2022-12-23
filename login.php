@@ -18,7 +18,7 @@ if (isset($_POST['email'])) {
         $_SESSION['email'] = $email;
         header("Location: index.php");
     } else {
-        echo "Le nom d'utilisateur ou le mot de passe est incorrect.";
+        echo "Le nom d'utilisateur est incorrect ou n'existe pas.";
     }
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['email'])) {
     <div class="container">
             <div class="row">
                 <div class="col">
-                    <form action="" method="post" name="login">
+                    <form action="" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse email</label>
                             <input type="email" name="email" class="form-control" id="email">
@@ -46,6 +46,8 @@ if (isset($_POST['email'])) {
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <button type="submit" id="submit" value="login" class="btn btn-primary">Submit</button>
+                        <br>
+                        <br>
                         <a href="register.php" style="text-decoration:none">Register</a>
                     </form>
 
